@@ -1,0 +1,15 @@
+{
+  "name": "mqtt-nodejs-machine",
+  "version": "1.0.0",
+  "description": "machine simulator using nodejs and mqtt.js",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.3.7"
+  }
+}

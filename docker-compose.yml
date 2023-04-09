@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  mosquitto-broker:
+    image: eclipse-mosquitto:latest
+    hostname: mosquitto-broker
+    container_name: mosquitto-broker
+    restart: unless-stopped
+    ports:
+      - "2883:2883"
+    volumes:
+      - ./broker/config:/mosquitto/config
+    networks:
+      - hands_on
+
+  machine:
+    image: node:lts
+    hostname: iot-machine
+    container_name: iot-machine
+    restart: unless-stopped
+    build: ./machine
+    working_dir: /machine
+    volumes:
+      - ./machine:/machine
+    command: "npm install"
+    command: "npm start"
+    depends_on:
+      - mosquitto-broker
+    networks:
+      - hands_on
+
+
+networks:
+  hands_on:
+    name: hands_on
+    driver: bridge
