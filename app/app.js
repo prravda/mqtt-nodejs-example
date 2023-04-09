@@ -5,8 +5,8 @@ const client = mqtt.connect(`mqtt://mosquitto-broker:2883`);
 
 const connection = mysql2.createConnection({
     host: 'database-mysql',
-    user: 'test',
-    password: 'abc123!',
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
     port: process.env.MYSQL_PORT,
 });
